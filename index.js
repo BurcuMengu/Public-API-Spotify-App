@@ -1,5 +1,5 @@
 import express from "express";
-import axios from " axios";
+import axios from "axios";
 import bodyParser from "body-parser";
 
 const app = express();
@@ -8,8 +8,8 @@ const API_URL = "https://api.spotify.com/v1";
 
 //Spotify API Credentials
 
-const clientID = "";
-const clientSecret = "";
+//const clientID = "";
+//const clientSecret = "";
 const yourAccessToken = "BQDBKJ5eo5jxbtpWjVOj7ryS84khybFpP_lTqzV7uV-T_m0cTfwvdn5BnBSKPxKgEb11";
 const config = {
     headers: { Authorization: `Bearer ${yourAccessToken}`},
@@ -30,20 +30,31 @@ app.post("/get-track", async (req, res) => {
     const trackId = req.body.id;
     try {
         const result = await axios.get(API_URL + "/tracks/" + trackId, config);
-        res.render("index.ejs", {content: JSON.stringify(result.data) });
+        res.render("index.ejs", { content: JSON.stringify(result.data) });
     } catch (error) {
-        res.render("index.ejs", {content: JSON.stringify(error.response.data) });
+        res.render("index.ejs", { content: JSON.stringify(error.response.data) });
     }
 });
 
 //Create a Playlist
 
 app.post("/create-playlist", async (req, res) => {
+    const userId = req.body.userId;
+    const playList = req.body.playList;
     try {
-        const result = await axios.post(API_URL + "/users/" + userId, playlist, req.body, config);
-        res.render("index.ejs", {content: JSON.stringify(result.data) });
+        const result = await axios.post(API_URL + "/users/" + userId, playList, config);
+        res.render("index.ejs", { content: JSON.stringify(result.data) });
     } catch (error) {
-        res.render("index.ejs", {content: JSON.stringify(error.response.data) });
+        res.render("index.ejs", { content: JSON.stringify(error.response.data) });
+    }
+});
+
+app.get("/bearerToken", async (req, res) => {
+    try {
+        const result = await axios.get(API_URL + "/secrets", config);
+        res.render("index.ejs", { content: JSON.stringify(result.data) });
+    } catch (error) {
+        res.status(404).send(error.message);
     }
 });
 

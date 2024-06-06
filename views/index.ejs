@@ -1,12 +1,59 @@
+<!-- index.ejs -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Spotify App</title>
     <link rel="stylesheet" href="styles/main.css">
 </head>
-
 <body>
-    
-</body>
 
+    <header class="header">
+        <div class="container">
+            <h1>Spotify App with Public API</h1>
+        </div>
+    </header>
+
+    <div class="container">
+        <section class="section">
+            <h2>Track Information</h2>
+            <div class="pre-container">
+                <% if (trackContent) { %>
+                    <pre><%= trackContent %></pre>
+                <% } else { %>
+                    <p>No track information available.</p>
+                <% } %>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Playlist Creation Result</h2>
+            <div class="pre-container">
+                <% if (playlistContent) { %>
+                    <pre><%= playlistContent %></pre>
+                <% } else { %>
+                    <p>No playlist creation result available.</p>
+                <% } %>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Bearer Token Information</h2>
+            <div class="pre-container">
+                <% if (tokenContent) { %>
+                    <pre><%= tokenContent %></pre>
+                <% } else { %>
+                    <p>No bearer token information available.</p>
+                <% } %>
+            </div>
+        </section>
+    </div>
+
+    <footer class="footer">
+        <p>© 2024 Spotify Clone. All rights reserved.</p>
+    </footer>
+
+</body>
 </html>
