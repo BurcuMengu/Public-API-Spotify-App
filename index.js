@@ -1,6 +1,8 @@
 import express from "express";
 import axios from "axios";
 import bodyParser from "body-parser";
+import dotenv from "dotenv";
+dotenv.config();
 
 const app = express();
 const port = 3000;
@@ -10,7 +12,9 @@ const API_URL = "https://api.spotify.com/v1";
 
 //const clientID = "";
 //const clientSecret = "";
-const yourAccessToken = "BQDBKJ5eo5jxbtpWjVOj7ryS84khybFpP_lTqzV7uV-T_m0cTfwvdn5BnBSKPxKgEb11";
+const yourAccessToken = process.env.YOUR_ACCESS_TOKEN;
+console.log(`http://localhost:${yourAccessToken}`);
+
 const config = {
     headers: { Authorization: `Bearer ${yourAccessToken}`},
 };
