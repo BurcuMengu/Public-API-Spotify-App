@@ -1,19 +1,19 @@
 import express from "express";
 import axios from "axios";
 import bodyParser from "body-parser";
-import dotenv from "dotenv";
-dotenv.config();
+import env from "dotenv";
 
 const app = express();
 const port = 3000;
 const API_URL = "https://api.spotify.com/v1";
+env.config();
+
 
 //Spotify API Credentials
 
 //const clientID = "";
 //const clientSecret = "";
 const yourAccessToken = process.env.YOUR_ACCESS_TOKEN;
-console.log(`http://localhost:${yourAccessToken}`);
 
 const config = {
     headers: { Authorization: `Bearer ${yourAccessToken}`},
